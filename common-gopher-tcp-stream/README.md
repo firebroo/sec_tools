@@ -1,5 +1,5 @@
 ### 原理
-gopher协议是个tcp/ip协议，通过gopher协议可以发送tcp stream，payload使用%+16进制编码，此工具通过网卡流量解析出tcp stream，转换为gopher的payload
+gopher协议是个tcp/ip协议，通过gopher协议可以发送tcp stream，payload使用%+16进制编码，其实原理比较简单，平时自己用tcpdump或者wireshark把stream一段段复制出来就行，但是这样在使用的时候发现很容易出错，出现错误很难排查，而且对着一大段16进制特别头晕，于是就有了此工具，直接打印出可以复制粘贴的payload，此工具通过网卡流量解析出tcp stream，转换为gopher的payload
 
 ### 使用
 测试redis e.g.
