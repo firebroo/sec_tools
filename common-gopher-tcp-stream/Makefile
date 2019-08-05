@@ -7,7 +7,7 @@ OBJS = $(SRCS:.c=.o)
 INSTALLDIR = /bin/
 
 CC = cc
-CFLAGS = -O2
+CFLAGS = -O2 -std=gnu99
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
